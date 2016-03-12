@@ -28,5 +28,5 @@ def sendCommand():
         print "not post"
         return 'NOT POST'
     
-    if __name__ == "__main__": # only run if not used as an import
-        app.run(host='0.0.0.0', port=5000, debug=True) # all 0s means listen on all public IPs     
+if __name__ == "__main__": # only run if not used as an import
+    app.run(host='0.0.0.0', port=5000, debug=True) # all 0s means listen on all public IPs     
