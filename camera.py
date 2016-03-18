@@ -7,13 +7,21 @@ PORT = 5555
 while (1):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((HOST, PORT))
-    s.sendall('cam')
+    s.sendall('cam')# I am a camera
 
     data = s.recv(1024)
     print 'Received: ', data
 
-    if data == "cap":
+    action = data.split(' ')[0]
+    if (data.count(' ') >= 1):
+        value = data.split(' ')[1]
+    else:
+        value = ''
+        
+    if action == "cap":
         os.system("gphoto2 --capture-image")
+    elif action == "ssp":
+        os.system("gphoto2 --set-config /main/capturesettings/shutterspeed " + value)
 
     s.close()
 
