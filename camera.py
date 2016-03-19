@@ -19,9 +19,16 @@ while (1):
         value = ''
         
     if action == "cap":
-        os.system("gphoto2 --capture-image")
-    elif action == "ssp":
-        os.system("gphoto2 --set-config /main/capturesettings/shutterspeed " + value)
+        os.system("raspistill --width 200 --height 150 -v --nopreview -o picture.jpg")
+        os.#system("scp pic.jpg pi@howtoterminal.com:~/public_html/")
+    elif action == "iso":
+        os.system("raspistill --width 200 --height 150 -v --nopreview -o pic.jpg " + value)
+
+    
+   # if action == "cap":
+   #     os.system("gphoto2 --capture-image")
+   # elif action == "ssp":
+   #    os.system("gphoto2 --set-config /main/capturesettings/shutterspeed " + value)
 
     s.close()
 
