@@ -13,6 +13,7 @@ import os
 
 HOST = ''                 # Symbolic name meaning all available interfaces
 PORT = 5555              # Default port if none specified in args
+BUFSIZE = 4096
 
 if len(sys.argv) >= 2:
     PORT = int(sys.argv[1])
@@ -33,12 +34,12 @@ s.listen(1)
 while 1:
     conn, addr = s.accept()
     print 'Connected by', addr
-    data = conn.recv(1024)
+    data = conn.recv(BUFSIZE)
     print data
     
     conn2, addr2 = s.accept()
     print 'Connected by', addr
-    data2 = conn2.recv(1024)
+    data2 = conn2.recv(BUFSIZE)
     print data2
     
     if not data or not data2: break
@@ -51,10 +52,18 @@ while 1:
         ctrEvent = data2.partition(" ")[2]
         print "PArtition ", ctrEvent, " Whole ", data2
         conn.sendall(ctrEvent)
+        writeFile = open('flask/templates/pic.jpg', 'w')
+        picData = conn.recv(BUFSIZE)
+        writeFile.write(picData)
+        writeFile.close()
     elif command2 == "cam":
         ctrEvent = data.partition(" ")[2]
         print "PArtition ", ctrEvent, " Whole ", data
         conn2.sendall(ctrEvent)
+        writeFile = open('flask/templates/pic.jpg', 'w')
+        picData = conn2.recv(BUFSIZE)
+        writeFile.write(picData)
+        writeFile.close()
     #requestMethod = requestLine.split(' ')[0]
     #requestObject = requestLine.split(' ')[1]
     #httpVersion = requestLine.split(' ')[2]

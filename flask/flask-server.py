@@ -1,7 +1,8 @@
 from flask import Flask
-from flask import request
+from flask import request, render_template
 import os
 import socket
+import datetime
 
 app = Flask(__name__)
 HOST = 'howtoterminal.com'
@@ -11,7 +12,13 @@ print "STARTED connection on PORT ", PORT
 
 @app.route("/") # what URL should trigger the function
 def hello():
-    return "Hello World!"
+    now = datetime.datetime.now()
+    timeString = now.strftime("%Y-%m-%d %H:%M")
+    templateData = {
+        'title' : 'DSLR PROTOCOL',
+        'time': timeString
+    }
+    return render_template('main.html', **templateData)
 
 @app.route('/dslr', methods=['POST', 'GET'])
 def sendCommand():
