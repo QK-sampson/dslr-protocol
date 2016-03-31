@@ -1,20 +1,23 @@
 <!DOCTYPE html>
+
 <head>
   <title>{{ title }}</title>
-  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      margin: auto;
-      display: table;
-    }
-  </style>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-  <h1>Picture Taken</h1>
-  <img src="http://howtoterminal.com/dslr-protocol/flask/templates/pic.jpg"/>
-  <h2>The date and time on the server is: {{ time }}</h2>
-  <a href="http://howtoterminal.com/cam">Back</a>
+  <div class="container-fluid">
+    <div class="jumbotron">
+      <h1>Picture Taken</h1>
+      <img src="http://howtoterminal.com/dslr-protocol/flask/templates/pic.jpg" />
+      <h2>The date and time on the server is: {{ time }}</h2>
+      <a href="http://howtoterminal.com/cam">Back</a>
+    </div>
+  </div>
 </body>
+
 </html>
