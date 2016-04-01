@@ -1,11 +1,17 @@
 import socket
 
-HOST = 'howtoterminal.com'
+HOST = 'adam-Inspiron-1564'
 PORT = 5555
+BUFSIZE = 4096
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-def sendCommmand(command)
-  s.connect((HOST, PORT))
-  #s.sendall('ctr cap')
-  s.sendall(command)
-  s.close()
+def sendCommand(command):
+	s.connect((HOST, PORT))
+	#s.sendall('ctr cap')
+	s.sendall(command)
+	result = s.recv(BUFSIZE)
+	print 'RESULT: ', result
+	s.close()
+
+def what():
+  print "yo"
