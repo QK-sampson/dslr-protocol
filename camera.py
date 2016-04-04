@@ -1,6 +1,7 @@
 import os
 import socket
 import sys
+import time
 
 HOST = 'howtoterminal.com'
 PORT = 5555
@@ -37,8 +38,8 @@ elif CAMTYPE == 'picam':
 while (1):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((HOST, PORT))
+    print 'Sending "cam ', CAMTYPE, '"'
     s.sendall('cam '+CAMTYPE)# I am a camera
-    
     data = s.recv(BUFSIZE)
     print 'Received: ', data
 
@@ -58,12 +59,15 @@ while (1):
         os.system(command.bin+command.capture+command.filename+upFile)
         #upload picture
         print 'Sending file: ', upFile
+        time.sleep(50.0/1000.0)
         bytes = open(upFile).read()
         print len(bytes)
         s.sendall(bytes)
-        done = s.recv(BUFSIZE)
-        print 'DONE: ', done
-        s.sendall('cam snt byteshere')
+        s.close()
+        #s.sendall('cam snt ', len(bytes))
+        #done = s.recv(BUFSIZE)
+        #print 'DONE: ', done
+        #s.sendall('cam snt byteshere')
     elif action == "iso":
         #set ISO
         print 'attempting to set iso to '+value
