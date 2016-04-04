@@ -53,13 +53,14 @@ while (1):
         print 'ERROR: not enough args from other client'
 
     if action == "cap":
-        s.sendall('cam pic')
         upFile = "pic.jpg"
         os.system(command.bin+command.capture+command.filename+upFile)
         #upload picture
         print 'Sending file: ', upFile
         bytes = open(upFile).read()
-        print len(bytes)
+        totalBytes =  str(len(bytes))
+        print totalBytes
+        s.sendall('cam '+totalBytes+' '+'pic')
         s.sendall(bytes)
         s.close()
         #s.sendall('cam snt ', len(bytes))
@@ -77,7 +78,7 @@ while (1):
         s.sendall('cam apt '+value)
     elif action == "ssp":
         #set shutterspeed
-        os.system(command.bin+command.set+command.shutterspeed+command.getShutter(value))
+        os.system(command.bin+command.set+command.shutterspeed+command.getShutter(float(value)))
         s.sendall('cam ssp '+value)
 
     s.close()

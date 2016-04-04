@@ -134,80 +134,42 @@ s_25 = '=50' #25.0000s
 s_30 = '=51' #'30'.0000s
 
 def getShutter(s):
-        if s >= 30:
-                return s_30
-        elif s <= 0.0002:
-                return s4000
-        elif s <= 0.0003:
-                return s3200
-        elif s <= 0.0004:
-                return s2500
-        elif s <= 0.0005:
-                return s2000
-        elif s <= 0.0006:
-                return s1600
-        elif s <= 0.0008:
-                return s1250
-        elif s <= 0.0010:
-                return s1000
-        elif s <= 0.0012:
-                return s800
-        elif s <= 0.0015:
-                return s640
-        elif s <= 0.0020:
-                return s500
-        elif s <= 0.0025:
-                return s400
-        elif s <= 0.0031:
-                return s320
-        elif s <= 0.0040:
-                return s250
-        elif s <= 0.0050:
-                return s200
-        elif s <= 0.0062:
-                return s160
-        elif s <= 0.0080:
-                return s125
-        elif s <= 0.0100:
-                return s100
-        elif s <= 0.0125:
-                return s80
-        elif s <= 0.0166:
-                return s60
-        elif s <= 0.0200:
-                return s50
-        elif s <= 0.0250:
-                return s40
-        elif s <= 0.0333:
-                return s30
-        elif s <= 0.0400:
-                return s25
-        elif s <= 0.0500:
-                return s20
-        elif s <= 0.0666:
-                return s15
-        elif s <= 0.0769:
-                return s13
-        elif s <= 0.1000:
-                return s10
-        elif s <= 0.1250:
-                return s8
-        elif s <= 0.1666:
-                return s6
-        elif s <= 0.2000:
-                return s5
-        elif s <= 0.2500:
-                return s4
-        elif s <= 0.3333:
-                return s3
-        elif s <= 0.4000:
-                return s2_5
-        elif s <= 0.5000:
-                return s2
-        elif s <= 0.6250:
-                return s1_6
-        elif s <= 0.7692:
-                return s1_3
-        elif s <= 1.0000:
-                return s1
+        if s >= 30: return s_30
+        elif s <= 0.0002: return s4000
+        elif s <= 0.0003: return s3200
+        elif s <= 0.0004: return s2500
+        elif s <= 0.0005: return s2000
+        elif s <= 0.0006: return s1600
+        elif s <= 0.0008: return s1250
+        elif s <= 0.0010: return s1000
+        elif s <= 0.0012: return s800
+        elif s <= 0.0015: return s640
+        elif s <= 0.0020: return s500
+        elif s <= 0.0025: return s400
+        elif s <= 0.0031: return s320
+        elif s <= 0.0040: return s250
+        elif s <= 0.0050: return s200
+        elif s <= 0.0062: return s160
+        elif s <= 0.0080: return s125
+        elif s <= 0.0100: return s100
+        elif s <= 0.0125: return s80
+        elif s <= 0.0166: return s60
+        elif s <= 0.0200: return s50
+        elif s <= 0.0250: return s40
+        elif s <= 0.0333: return s30
+        elif s <= 0.0400: return s25
+        elif s <= 0.0500: return s20
+        elif s <= 0.0666: return s15
+        elif s <= 0.0769: return s13
+        elif s <= 0.1000: return s10
+        elif s <= 0.1250: return s8
+        elif s <= 0.1666: return s6
+        elif s <= 0.2000: return s5
+        elif s <= 0.2500: return s4
+        elif s <= 0.3333: return s3
+        elif s <= 0.4000: return s2_5
+        elif s <= 0.5000: return s2
+        elif s <= 0.6250: return s1_6
+        elif s <= 0.7692: return s1_3
+        elif s <= 1.0000: return s_1
 #todo add rest of shutter lookups

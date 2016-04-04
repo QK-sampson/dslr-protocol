@@ -16,23 +16,26 @@ PORT = 5555              # Default port if none specified in args
 BUFSIZE = 4096
 writePath = 'flask/templates/'
 
-def recvPic(conn, data2):
+def recvPic(conn, data2, totalBytes):
     print 'receiving pic'
-    ctrEvent = data2.partition(" ")[2]
+    #totalBytes = 86660#float(data2.partition(" ")[2])
     print " DATA: ", data2
     #conn.sendall(ctrEvent)
     writeFile = open(writePath+'pic2.jpg', 'w')
+    bytesSoFar = 0
+    lastProgress = 0
     while True:
         picData = conn.recv(BUFSIZE)
-        print len(picData)
+        bytesSoFar += len(picData)
+        #if int(100.0 * bytesSoFar / totalBytes) > lastProgress:
+           #TODO: progress bar here
+           #print int(100.0 * bytesSoFar / totalBytes)
         if not picData: break
         writeFile.write(picData)
+        lastProgress = int(100.0 * bytesSoFar / totalBytes)
 
     writeFile.close()
     print 'DONE WRITING ',writePath,'pic2.jpg'
-#    conn.sendall('ctr rcv img')
-#    data = conn.recv(BUFSIZE)
-#    print 'receivedddddddddddddddddddddddd',data
 #args
 if len(sys.argv) >= 2:
     PORT = int(sys.argv[1])
@@ -83,8 +86,9 @@ while 1:
             print 'sending "ctr cap" to cam'
             conn.sendall(data2)
             result = conn.recv(BUFSIZE)#send cam result to ctr
-            print 'RESULT: ', result, ' (now sending to ctr...)'
-            recvPic(conn, data2)
+            #print 'RESULT: ', result, ' (now sending to ctr...)'
+            totalBytes = result.split(' ')[1]
+            recvPic(conn, data2, int(totalBytes))
             print 'Picture received'
         else:
             print 'not yet implemented'
@@ -102,9 +106,9 @@ while 1:
         elif command == 'ctr' and option == 'cap':#take a pictaa
             print 'sending "ctr cap" to cam'
             conn2.sendall(data)
-            result = conn2.recv(BUFSIZE)#send cam result to ctr
-            print 'RESULT: ', result, ' (now sending to ctr...)'
-            recvPic(conn2, data)
+            result = conn2.recv(BUFSIZE)
+            totalBytes = result.split(' ')[1]
+            recvPic(conn2, data, int(totalBytes))
             print 'Picture received'
         else:
             print 'not yet implemented'
