@@ -1,7 +1,6 @@
 import os
 import socket
 import sys
-import time
 
 HOST = 'howtoterminal.com'
 PORT = 5555
@@ -59,7 +58,6 @@ while (1):
         os.system(command.bin+command.capture+command.filename+upFile)
         #upload picture
         print 'Sending file: ', upFile
-        time.sleep(50.0/1000.0)
         bytes = open(upFile).read()
         print len(bytes)
         s.sendall(bytes)
@@ -73,16 +71,13 @@ while (1):
         print 'attempting to set iso to '+value
         os.system(command.bin+command.set+command.iso+command.getISO(int(value)))
         s.sendall('cam iso '+value)
+    elif action == "apt":
+        #set fstop
+        os.system(command.bin+command.set+command.fstop+command.getFstop(value))
+        s.sendall('cam apt '+value)
     elif action == "ssp":
         #set shutterspeed
         os.system(command.bin+command.set+command.shutterspeed+command.getShutter(value))
         s.sendall('cam ssp '+value)
 
-   # if action == "cap":
-   #     os.system("gphoto2 --capture-image")
-   # elif action == "ssp":
-   #    os.system("gphoto2 --set-config /main/capturesettings/shutterspeed " + value)
-
     s.close()
-
-#print subprocess.Popen("gphoto2 --capture-image", shell=True, stdout=subprocess.PIPE)

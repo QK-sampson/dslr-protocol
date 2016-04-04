@@ -76,22 +76,18 @@ while 1:
         if command2 == 'ctr' and option2 != 'cap':#option given by ctr
             #value2 = data2.split(' ')[2]
             conn.sendall(data2)#send option to cam
+            result = conn.recv(BUFSIZE)
+            #conn2.sendall(result)
+            print 'RESULT: ', result
         elif command2 == 'ctr' and option2 == 'cap':#take a pictaa
-            print 'sending cap to cam'
+            print 'sending "ctr cap" to cam'
             conn.sendall(data2)
             result = conn.recv(BUFSIZE)#send cam result to ctr
             print 'RESULT: ', result, ' (now sending to ctr...)'
             recvPic(conn, data2)
-            print 'DONE TRANSFERING PICTURE'
-        elif option == 'pic':
-            print 'receiving pic from camera...'
-            recvPic(conn, data2)
+            print 'Picture received'
         else:
             print 'not yet implemented'
-        result = conn.recv(BUFSIZE)#send cam result to ctr
-        print 'RESULT: ', result, ' (now sending to ctr...)'
-        
-        conn2.sendall(result)
 
     elif command == 'ctr':#one is the ctr
         option = data.split(' ')[1]
@@ -100,16 +96,19 @@ while 1:
         if command == 'ctr' and option != 'cap':
             #value =  data.split(' ')[2]
             conn2.sendall(data)
+            result = conn2.recv(BUFSIZE)
+            #conn.sendall(result)#send result to ctr
+            print 'RESULT: ', result
         elif command == 'ctr' and option == 'cap':#take a pictaa
+            print 'sending "ctr cap" to cam'
             conn2.sendall(data)
-            print conn2.recv(BUFSIZE)
-        elif option2 == 'pic':
+            result = conn2.recv(BUFSIZE)#send cam result to ctr
+            print 'RESULT: ', result, ' (now sending to ctr...)'
             recvPic(conn2, data)
+            print 'Picture received'
         else:
             print 'not yet implemented'
-        result = conn2.recv(BUFSIZE)
-        conn.sendall(result)
-        print 'RESULT: ', result
+
     print 'end of loop'
 print 'out of loop'
     #conn.sendall('data here')
