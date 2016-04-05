@@ -21,7 +21,7 @@ def recvPic(conn, data2, totalBytes):
     #totalBytes = 86660#float(data2.partition(" ")[2])
     print " DATA: ", data2
     #conn.sendall(ctrEvent)
-    writeFile = open(writePath+'pic2.jpg', 'w')
+    writeFile = open(writePath+'pic.jpg', 'w')
     bytesSoFar = 0
     lastProgress = 0
     while True:
