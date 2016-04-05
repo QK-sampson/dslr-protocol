@@ -56,6 +56,8 @@ while (1):
         upFile = "pic.jpg"
         os.system(command.bin+command.capture+command.filename+upFile)
         #upload picture
+        #compress
+        os.system('dpkg -s imagemagick > /dev/null && convert -resize 800x -strip -interlace Plane -quality 50% '+upFile+' '+upFile)
         print 'Sending file: ', upFile
         bytes = open(upFile).read()
         totalBytes =  str(len(bytes))
