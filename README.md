@@ -23,5 +23,6 @@ How To
 <br>Change ISO: `reload(controller); controller.sendCommand("ctr iso 1600")`
 <br>Change Shutterspeed: `reload(controller); controller.sendCommand("ctr ssp 1")`
 
-<br>Flask Screenshot (server currently off)
+<br><a href="http://howtoterminal.com/cam">Flask</a> Screenshot
+<br>
 ![Action Screenshot](/screenshot/screenshot.png?raw=true "Action Screenshot")
