@@ -3,6 +3,7 @@ from flask import request, render_template
 import os
 import socket
 import datetime
+import controller
 
 app = Flask(__name__)
 HOST = 'howtoterminal.com'
@@ -26,10 +27,12 @@ def sendCommand():
     if request.method == 'POST':
         action = request.form['action']
         print action
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.connect((HOST, PORT))
-        s.sendall('ctr cap')
-        s.close()
+        reload(controller)
+        controller.sendCommand(action)
+        #s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        #s.connect((HOST, PORT))
+        #s.sendall('ctr cap')
+        #s.close()
         return hello()
     else:
         print "not post"
