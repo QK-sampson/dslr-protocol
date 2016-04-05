@@ -62,11 +62,6 @@ while (1):
         print totalBytes
         s.sendall('cam '+totalBytes+' '+'pic')
         s.sendall(bytes)
-        s.close()
-        #s.sendall('cam snt ', len(bytes))
-        #done = s.recv(BUFSIZE)
-        #print 'DONE: ', done
-        #s.sendall('cam snt byteshere')
     elif action == "iso":
         #set ISO
         print 'attempting to set iso to '+value
@@ -74,7 +69,7 @@ while (1):
         s.sendall('cam iso '+value)
     elif action == "apt":
         #set fstop
-        os.system(command.bin+command.set+command.fstop+command.getFstop(value))
+        os.system(command.bin+command.set+command.fstop+command.getFstop(float(value)))
         s.sendall('cam apt '+value)
     elif action == "ssp":
         #set shutterspeed
