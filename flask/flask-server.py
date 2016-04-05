@@ -28,7 +28,7 @@ def sendCommand():
         action = request.form['action']
         print action
         reload(controller)
-        controller.sendCommand(action)
+        controller.sendCommand(action, 'howtoterminal.com', 5555)
         #s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         #s.connect((HOST, PORT))
         #s.sendall('ctr cap')
